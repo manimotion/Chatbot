@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "a512efac-e963-422f-9bb3-2ae8668ab3dd",
+		"name": "prueba newman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "006 No es Necesario Conciliacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed9421cd-902e-458d-bd6a-165501fba5bf",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Codigo debe ser 006\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(data.codigoEsperado);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains City\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(pm.iterationData.get(\"mensajeEsperado\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"identificationTypeCustomer\" : \"{{identificationTypeCustomer}}\",\r\n  \"identificationNrPartyIdentification\" : \"{{identificationNrPartyIdentification}}\",\r\n  \"customerId\" : \"{{customerId}}\",\r\n  \"productType\" : \"{{productType}}\",\r\n  \"operation\" : \"{{operation}}\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.203.106.245:7003/globalIntegration/services/ServiceConfigurationManagemen/ProductConciliationFixedOrch_v1",
+					"protocol": "http",
+					"host": [
+						"10",
+						"203",
+						"106",
+						"245"
+					],
+					"port": "7003",
+					"path": [
+						"globalIntegration",
+						"services",
+						"ServiceConfigurationManagemen",
+						"ProductConciliationFixedOrch_v1"
+					]
+				},
+				"description": "Codigo 006"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
