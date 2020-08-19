@@ -38,7 +38,7 @@ jobs:
         if [ -f api/requirements.txt ]; then pip install -r api/requirements.txt; fi
 
     - name: Install Newman dependency
-      run: npm install --prefix tests/postman/
+      run: npm install --prefix nuevo/
 
     - name: Run the API and Postman's tests
       run: |
