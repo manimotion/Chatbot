@@ -42,8 +42,6 @@ jobs:
 
     - name: Run the API and Postman's tests
       run: |
-        cd api && flask run &
-        sleep 2
         cd nuevo && ./node_modules/newman/bin/newman.js run prueba_newman.postman_collection.json -d insumos_chatbotjson.json
         kill -9 `lsof -i:5000 -t`
    
