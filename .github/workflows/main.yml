@@ -44,6 +44,7 @@ jobs:
       run: |
         cd nuevo && ./node_modules/newman/bin/newman.js run prueba_newman.postman_collection.json -d insumos_chatbotjson.json
         kill -9 `lsof -i:5000 -t`
-     env:
-      CI: true
-   
+        
+      env:
+        CI: true        
+
