@@ -1,4 +1,4 @@
-name: CI - Integration Test  
+name: CI - Integration Test 2 
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -46,7 +46,7 @@ jobs:
     
     - name: Run the API and Postman's tests
       run: |
-        cd nuevo/ && ./node_modules/newman/bin/newman.js run prueba_newman.postman_collection.json -d insumos_chatbotjson.json
+        cd nuevo/ && ./node_modules/newman/bin/newman.js run XML_QueryMigration.postman_collection.json
         kill -9 `lsof -i:5000 -t`
         
       env:
