@@ -41,12 +41,12 @@ jobs:
       run: npm install --prefix nuevo/
 
     - name: Install VPN cisco
-      run: npm install cisco-vpn
+      run: npm install cisco-vpn --prefix nuevo/
 
     
     - name: Run the API and Postman's tests
       run: |
-        printf 'jmorjuelaor\nSEP_2020\ny' | /opt/cisco/anyconnect/bin/vpn -s connect 200.21.240.131
+        printf 'jmorjuelaor\nSEP_2020\ny' | ./opt/cisco/anyconnect/bin/vpn -s connect 200.21.240.131
         cd nuevo/ && ./node_modules/newman/bin/newman.js run XML_QueryMigration.postman_collection.json
         kill -9 `lsof -i:5000 -t`
         
