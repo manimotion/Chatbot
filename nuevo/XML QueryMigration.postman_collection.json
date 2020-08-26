@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "99d330bd-a2f7-4fce-aa79-b61efbbf526a",
+		"name": "XML QueryMigration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "query",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fbb00457-94b4-4f70-81e2-acc97255846a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonObject = xml2Json(responseBody);\r",
+							"console.log(jsonObject)\r",
+							"\r",
+							"pm.test(\"Abonado Consultado\", function () {\r",
+							"    var jsonData = jsonObject\r",
+							"    pm.expect(jsonObject[\"soapenv:Envelope\"][\"soapenv:Body\"][\"ns2:querySubscriberPlatformResponse\"][\"ns3:wsResult\"][\"ns3:description\"]).to.eql(\"Abonado 3174313485 consultado\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The body of the response is a valid XML\", function () {\r",
+							"     pm.expect(xml2Json(responseBody)).to.exist;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Abonado presente en greta\", function () {\r",
+							"    var jsonData = jsonObject\r",
+							"    pm.expect(jsonObject[\"soapenv:Envelope\"][\"soapenv:Body\"][\"ns2:querySubscriberPlatformResponse\"][\"ns2:source\"]).to.eql(\"1\")\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:typ=\"http://telefonica.com/globalIntegration/services/QueryMigrationByAccount/v1/types\" xmlns:v1=\"http://telefonica.com/globalIntegration/services/CommonsTypes/v1\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <typ:querySubscriberPlatformRequest>\r\n         <v1:msisdn>3174313485</v1:msisdn>\r\n      </typ:querySubscriberPlatformRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.203.109.251:7110/globalIntegration/services/CustomerSubscriptionManagement/QueryMigrationByNumber_v1",
+					"protocol": "http",
+					"host": [
+						"10",
+						"203",
+						"109",
+						"251"
+					],
+					"port": "7110",
+					"path": [
+						"globalIntegration",
+						"services",
+						"CustomerSubscriptionManagement",
+						"QueryMigrationByNumber_v1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
