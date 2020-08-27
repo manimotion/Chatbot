@@ -41,7 +41,7 @@ jobs:
       run: npm install --prefix nuevo/
 
     - name: Install VPN cisco
-      run: sudo apt-get install openconnect
+      run: npm install cisco-vpn
 
 
     
