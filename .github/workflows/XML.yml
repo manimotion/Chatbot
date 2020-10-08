@@ -40,11 +40,7 @@ jobs:
     - name: Install Newman dependency
       run: npm install --prefix nuevo/
 
-    - name: Install VPN cisco
-      run: npm install cisco-vpn
 
-
-    
     - name: Run the API and Postman's tests
       run: |
         cd nuevo/ && ./node_modules/newman/bin/newman.js run XML_QueryMigration.postman_collection.json
